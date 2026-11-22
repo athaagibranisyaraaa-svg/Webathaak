@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: neural-video-studio
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MOONSHOT_API_KEY
+        sync: false
+      - key: CHROMIUM_PATH
+        value: /usr/bin/chromium
+    disk:
+      name: nvs-storage
+      mountPath: /app/storage
+      sizeGB: 5
